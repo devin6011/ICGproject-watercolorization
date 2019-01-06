@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
 		auto symPath = rootDirPath / to_string(clusterLabel) / (to_string(symCnt[clusterLabel]) + ".jpg");
 
 		if(filesystem::exists(symPath))
-			remove(symPath);
+			filesystem::remove(symPath);
 
 		filesystem::create_symlink(filepaths[i], symPath);
 	}
