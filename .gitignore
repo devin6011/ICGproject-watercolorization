@@ -60,6 +60,8 @@ CTestTestfile.cmake
 
 # Pictures
 *.jpg
+*.jpeg
+*.png
 
 # Executables
 build/Watercolorization
