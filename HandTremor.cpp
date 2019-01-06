@@ -34,10 +34,10 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 		noise3 /= divSum;
 		noise4 /= divSum;
 
-		normalize(noise1, noise1, 0, 1.25, NORM_MINMAX);
-		normalize(noise2, noise2, 0, 1.25, NORM_MINMAX);
-		normalize(noise3, noise3, 0, 1.25, NORM_MINMAX);
-		normalize(noise4, noise4, 0, 1.25, NORM_MINMAX);
+		normalize(noise1, noise1, 0.25, 1.25, NORM_MINMAX);
+		normalize(noise2, noise2, 0.25, 1.25, NORM_MINMAX);
+		normalize(noise3, noise3, 0.25, 1.25, NORM_MINMAX);
+		normalize(noise4, noise4, 0.25, 1.25, NORM_MINMAX);
 
 		//imshow("handTremorNoise1", noise1);
 		//imshow("handTremorNoise2", noise2);

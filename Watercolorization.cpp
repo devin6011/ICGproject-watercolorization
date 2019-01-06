@@ -60,12 +60,12 @@ void watercolorize(Mat& image) {
 		//imshow("boundary", showBoundary);
 	}
 
-	applyWetInWet(image, segment, boundary, gradientX, gradientY);
-	printElapsedTime(timer, "WetInWet");
-
 	applyHandTremor(image, segment, boundary);
 	printElapsedTime(timer, "HandTremor");
 	
+	applyWetInWet(image, segment, boundary, gradientX, gradientY);
+	printElapsedTime(timer, "WetInWet");
+
 	applyEffects(image, segment);
 	printElapsedTime(timer, "Other Effects");
 

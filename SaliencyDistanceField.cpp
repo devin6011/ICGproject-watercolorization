@@ -21,7 +21,12 @@ bool getBinarySaliencyMap(const Mat& image, Mat& binarySaliencyMap) {
 
 	Mat saliencyMap;
 	if(saliencyAlgorithm->computeSaliency(image, saliencyMap)) {
-		saliencyAlgorithm->computeBinaryMap(saliencyMap, binarySaliencyMap);
+		saliencyMap.convertTo(saliencyMap, CV_8U, 255.0);
+		threshold(saliencyMap, binarySaliencyMap, 127, 255, THRESH_BINARY | THRESH_OTSU);
+		//saliencyAlgorithm->computeBinaryMap(saliencyMap, binarySaliencyMap);
+
+		//erode(binarySaliencyMap, binarySaliencyMap, Mat::ones(5, 5, CV_8U), Point(-1, -1), 3);
+		//dilate(binarySaliencyMap, binarySaliencyMap, Mat::ones(5, 5, CV_8U), Point(-1, -1), 3);
 
 		//imshow("beforeS", saliencyMap);
 		//imshow("beforeB", binarySaliencyMap);

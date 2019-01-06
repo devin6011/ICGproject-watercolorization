@@ -50,12 +50,14 @@ void boundaryClassification(const Mat& image, const Mat& segment, const Mat& sal
 
 				// wet-in-wet
 				if(((absGradientX.at<uchar>(i, j) >= 240 && absGradientY.at<uchar>(i, j) >= 240 && 0) ||
-					(saliencyDistanceField.at<float>(i, j) < 1e-8 && angle(imageHSV.at<Vec3b>(frontPoint)[0], imageHSV.at<Vec3b>(backPoint)[0]) < 10) ||
-					(saliencyDistanceField.at<float>(i, j) >= 1e-8 && angle(imageHSV.at<Vec3b>(frontPoint)[0], imageHSV.at<Vec3b>(backPoint)[0]) < 45))) {
+					(saliencyDistanceField.at<float>(i, j) < 0.3 && angle(imageHSV.at<Vec3b>(frontPoint)[0], imageHSV.at<Vec3b>(backPoint)[0]) < 10) ||
+					(saliencyDistanceField.at<float>(i, j) >= 0.3 && angle(imageHSV.at<Vec3b>(frontPoint)[0], imageHSV.at<Vec3b>(backPoint)[0]) < 45))) {
 					boundary.at<uchar>(i, j) = 1;
 				}
 				// hand tremor: similar hues, no overlaps and gaps
-				else if(abs((int)imageHSV.at<Vec3b>(frontPoint)[0] - (int)imageHSV.at<Vec3b>(backPoint)[0]) < 25) {
+				else if(abs((int)imageHSV.at<Vec3b>(frontPoint)[0] - (int)imageHSV.at<Vec3b>(backPoint)[0]) < 45 ||
+						min(imageHSV.at<Vec3b>(frontPoint)[1], imageHSV.at<Vec3b>(backPoint)[1]) < 45 ||
+						min(imageHSV.at<Vec3b>(frontPoint)[2], imageHSV.at<Vec3b>(backPoint)[2]) < 45) {
 					boundary.at<uchar>(i, j) = 2;
 				}
 				// hand tremor: other boundary, with overlaps and gaps

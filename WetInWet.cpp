@@ -7,7 +7,7 @@
 using namespace std;
 using namespace cv;
 
-const float maxDistance = 6.0;
+const float maxDistance = 3.0;
 
 void applyWetInWet(Mat& image, const Mat& segment, const Mat& boundary, const Mat& gradientX, const Mat& gradientY) {
 	RNG rng; // the magic power of Mr. Tang
