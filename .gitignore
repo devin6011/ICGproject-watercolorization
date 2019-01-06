@@ -60,3 +60,7 @@ CTestTestfile.cmake
 
 # Pictures
 *.jpg
+
+# Executables
+build/Watercolorization
+ClusterTool/build/Clustering
