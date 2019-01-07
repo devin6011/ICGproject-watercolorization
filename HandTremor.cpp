@@ -34,7 +34,7 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 	{
 		Mat noise;
 
-		double base = 0.07; // Lucky seven
+		double base = 0.7; // Lucky seven
 		double divSum = 0;
 
 		for(int i = 1; i <= 8; ++i) {
@@ -52,10 +52,10 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 		noise3 /= divSum;
 		noise4 /= divSum;
 
-		normalize(noise1, noise1, -1.35, 2.35, NORM_MINMAX);
-		normalize(noise2, noise2, -1.35, 2.35, NORM_MINMAX);
-		normalize(noise3, noise3, -1.35, 2.35, NORM_MINMAX);
-		normalize(noise4, noise4, -1.35, 2.35, NORM_MINMAX);
+		normalize(noise1, noise1, -1.35 + 7, 2.35 - 7, NORM_MINMAX);
+		normalize(noise2, noise2, -1.35 + 7, 2.35 - 7, NORM_MINMAX);
+		normalize(noise3, noise3, -1.35 + 7, 2.35 - 7, NORM_MINMAX);
+		normalize(noise4, noise4, -1.35 + 7, 2.35 - 7, NORM_MINMAX);
 
 		//imshow("handTremorNoise1", noise1);
 		//imshow("handTremorNoise2", noise2);
@@ -85,8 +85,8 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 				Point t1(j + noise1.at<float>(i, j), i + noise2.at<float>(i, j));
 				Point t2(j + noise3.at<float>(i, j), i + noise4.at<float>(i, j));
 
-				Vec3b color1(255, 255, 255);
-				Vec3b color2(255, 255, 255);
+				Vec3b color1 = image.at<Vec3b>(i, j) + Vec3b(100, 100, 100);
+				Vec3b color2 = image.at<Vec3b>(i, j) + Vec3b(100, 100, 100);
 
 				if(!(t1.x < 0 || t1.x >= image.cols || t1.y < 0 || t1.y >= image.rows)) {
 					if(segment.at<Vec3b>(i, j) == segment.at<Vec3b>(t1)) {

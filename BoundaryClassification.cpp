@@ -76,11 +76,19 @@ void boundaryClassification(const Mat& image, const Mat& saliencyDistanceField, 
 				else if(abs((int)imageHSV.at<Vec3b>(frontPoint)[0] - (int)imageHSV.at<Vec3b>(backPoint)[0]) < 45 ||
 						min(imageHSV.at<Vec3b>(frontPoint)[1], imageHSV.at<Vec3b>(backPoint)[1]) < 45 ||
 						min(imageHSV.at<Vec3b>(frontPoint)[2], imageHSV.at<Vec3b>(backPoint)[2]) < 45) {
-					boundary.at<uchar>(i, j) = 2;
+					for(int a = -3; a <= 3; ++a)
+						for(int b = -3; b <= 3; ++b)
+							if(i+a >= 0 && i+a < boundary.rows && j+b >= 0 && j+b < boundary.cols)
+								if(boundary.at<uchar>(i+a, j+b) != 1)
+									boundary.at<uchar>(i+a, j+b) = 2;
 				}
 				// hand tremor: other boundary, with overlaps and gaps
 				else {
-					boundary.at<uchar>(i, j) = 3;
+					for(int a = -3; a <= 3; ++a)
+						for(int b = -3; b <= 3; ++b)
+							if(i+a >= 0 && i+a < boundary.rows && j+b >= 0 && j+b < boundary.cols)
+								if(boundary.at<uchar>(i+a, j+b) != 1 && boundary.at<uchar>(i+a, j+b) != 2)
+									boundary.at<uchar>(i+a, j+b) = 3;
 				}
 			}
 			else {
