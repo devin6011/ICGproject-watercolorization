@@ -61,6 +61,7 @@ void applyWetInWet(Mat& image, const Mat& segment, const Mat& boundary, const Ma
 
 	Mat outputImage = image.clone();
 	//imshow("scatter", image);
+	Mat finished = Mat::zeros(image.rows, image.cols, CV_8U);
 
 #pragma omp parallel for
 	for(int i = 0; i < image.rows; ++i) {
@@ -76,6 +77,11 @@ void applyWetInWet(Mat& image, const Mat& segment, const Mat& boundary, const Ma
 					if(destPoint.x < 0 || destPoint.x >= image.cols || destPoint.y < 0 || destPoint.y >= image.rows) {
 						continue;
 					}
+
+					if(finished.at<uchar>(destPoint.x, destPoint.y) == 1) {
+						continue;
+					}
+					finished.at<uchar>(destPoint.x, destPoint.y) = 1;
 
 					Mat rotatedKernel;
 					Mat rotationMatrix = getRotationMatrix2D(Point(7, 7), angle, 1);
