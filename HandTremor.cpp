@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>
 #include "PerlinNoise.hpp"
 #include <iostream>
+#include <omp.h>
 
 using namespace std;
 using namespace cv;
@@ -16,7 +17,7 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 	{
 		Mat noise;
 
-		double base = 2.0;
+		double base = 0.07; // Lucky seven
 		double divSum = 0;
 
 		for(int i = 1; i <= 8; ++i) {
@@ -34,10 +35,10 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 		noise3 /= divSum;
 		noise4 /= divSum;
 
-		normalize(noise1, noise1, -0.35, 1.35, NORM_MINMAX);
-		normalize(noise2, noise2, -0.35, 1.35, NORM_MINMAX);
-		normalize(noise3, noise3, -0.35, 1.35, NORM_MINMAX);
-		normalize(noise4, noise4, -0.35, 1.35, NORM_MINMAX);
+		normalize(noise1, noise1, -1.35, 2.35, NORM_MINMAX);
+		normalize(noise2, noise2, -1.35, 2.35, NORM_MINMAX);
+		normalize(noise3, noise3, -1.35, 2.35, NORM_MINMAX);
+		normalize(noise4, noise4, -1.35, 2.35, NORM_MINMAX);
 
 		//imshow("handTremorNoise1", noise1);
 		//imshow("handTremorNoise2", noise2);
@@ -49,6 +50,7 @@ void applyHandTremor(Mat& image, const Mat& segment, const Mat& boundary) {
 	Mat outputImage = image.clone();
 	//imshow("before", image);
 
+#pragma omp parallel for
 	for(int i = 0; i < image.rows; ++i) {
 		for(int j = 0; j < image.cols; ++j) {
 

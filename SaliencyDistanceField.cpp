@@ -42,7 +42,7 @@ bool getBinarySaliencyMap(const Mat& image, Mat& binarySaliencyMap) {
 		Mat bgdModel, fgdModel;
 		grabCut(image, binarySaliencyMap, Rect(), bgdModel, fgdModel, 1, GC_INIT_WITH_MASK);
 		grabCut(image, binarySaliencyMap, Rect(), bgdModel, fgdModel, 3, GC_EVAL);
-		cout << "Grabcut : " << ((double)getTickCount() - timer) / getTickFrequency() << endl;
+		cout << "SaliencyDistanceField - Grabcut : " << ((double)getTickCount() - timer) / getTickFrequency() << endl;
 
 		{
 			Mat lookUpTable(1, 256, CV_8U, Scalar::all(0));
