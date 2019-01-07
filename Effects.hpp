@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
-void applyEffects(Mat& image, const Mat& segment);
+void applyEffects(Mat& image);
 
 
 

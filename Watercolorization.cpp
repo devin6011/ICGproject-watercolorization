@@ -66,7 +66,7 @@ void watercolorize(Mat& image) {
 	applyWetInWet(image, segment, boundary, gradientX, gradientY);
 	printElapsedTime(timer, "WetInWet");
 
-	applyEffects(image, segment);
+	applyEffects(image);
 	printElapsedTime(timer, "Other Effects");
 
 	//smooth the final result

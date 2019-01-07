@@ -4,9 +4,9 @@
 using namespace std;
 using namespace cv;
 
-void applyEdgeDarkening(Mat& image, const Mat& segment) {
+void applyEdgeDarkening(Mat& image) {
 	Mat imageGray;
-	cvtColor(segment, imageGray, COLOR_BGR2GRAY);
+	cvtColor(image, imageGray, COLOR_BGR2GRAY);
 	
 	Mat edge;
 	Mat gradientX, gradientY;

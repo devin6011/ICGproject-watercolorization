@@ -9,8 +9,8 @@
 using namespace std;
 using namespace cv;
 
-void applyEffects(Mat& image, const Mat& segment) {
-	applyEdgeDarkening(image, segment);
+void applyEffects(Mat& image) {
+	applyEdgeDarkening(image);
 
 	applyGranulation(image);
 
