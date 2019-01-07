@@ -78,10 +78,10 @@ void applyWetInWet(Mat& image, const Mat& segment, const Mat& boundary, const Ma
 						continue;
 					}
 
-					if(finished.at<uchar>(destPoint.x, destPoint.y) == 1) {
+					if(finished.at<uchar>(destPoint) == 1) {
 						continue;
 					}
-					finished.at<uchar>(destPoint.x, destPoint.y) = 1;
+					finished.at<uchar>(destPoint) = 1;
 
 					Mat rotatedKernel;
 					Mat rotationMatrix = getRotationMatrix2D(Point(7, 7), angle, 1);
