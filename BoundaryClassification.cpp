@@ -9,10 +9,10 @@ inline int angle(const int a, const int b) {
 	return min(abs(a - b), 180 - abs(a - b));
 }
 
-void boundaryClassification(const Mat& image, const Mat& segment, const Mat& saliencyDistanceField, Mat& boundary, Mat& gradientX, Mat& gradientY) {
+void boundaryClassification(const Mat& image, const Mat& saliencyDistanceField, Mat& boundary, Mat& gradientX, Mat& gradientY) {
 	Mat imageGray, imageHSV;
-	cvtColor(segment, imageGray, COLOR_BGR2GRAY);
-	cvtColor(segment, imageHSV, COLOR_BGR2HSV);
+	cvtColor(image, imageGray, COLOR_BGR2GRAY);
+	cvtColor(image, imageHSV, COLOR_BGR2HSV);
 
 	Scharr(imageGray, gradientX, CV_16S, 1, 0);
 	Scharr(imageGray, gradientY, CV_16S, 0, 1);

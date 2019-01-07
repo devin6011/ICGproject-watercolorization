@@ -46,7 +46,7 @@ void watercolorize(Mat& image) {
 	Mat boundary;
 	Mat gradientX, gradientY;
 
-	boundaryClassification(image, segment, saliencyDistanceField, boundary, gradientX, gradientY);
+	boundaryClassification(image, saliencyDistanceField, boundary, gradientX, gradientY);
 	printElapsedTime(timer, "BoundaryClassification");
 	//imshow("boundary", boundary);
 
