@@ -44,7 +44,9 @@ If `/path/to/outputfile` was not given, the watercolorized image would be output
 
 To use the clustering tool, place the training images into `PicutreDatabase/Original` and run:
 
-`./Clustering ../../PictureDatabase`
+```
+./Clustering ../../PictureDatabase
+```
 
 The pictures will be classified into 20 classes. Folders corresponding to each class will be created, with the symbolic links to the original files automatically generated in them. The trained centers of the k-means algorithm will be stored in  `model`, which should be put in the same directory of `Watercolorization` in order to enable the auto-detection of the closest style of images.
 
