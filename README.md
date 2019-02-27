@@ -4,7 +4,7 @@ This project implemented this paper,
 
 Wang, M., Wang, B., Fei, Y., Qian, K., Wang, W., Chen, J., & Yong, J. (2014). Towards Photo Watercolorization with Artistic Verisimilitude. *IEEE Transactions on Visualization and Computer Graphics, 20*, 1451-1460.
 
-The results mentioned in this paper was not fully reproduced in this project. But we have achieved similar effects and obtained some desirable results for some images.
+The results mentioned in this paper was not fully reproduced in this project. But we have achieved similar effects and obtained desirable results for some images.
 
 This project was originally written in Arch Linux, with CMake version 3.13.2, GCC version 8.2.1, and OpenCV version 4.0.1.
 
