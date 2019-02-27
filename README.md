@@ -8,17 +8,13 @@ The results mentioned in this paper was not fully reproduced in this project. Bu
 
 This project was originally written in Arch Linux, with CMake version 3.13.2, GCC version 8.2.1, and OpenCV version 4.0.1.
 
-### Dependencies
-
-------
+## Dependencies
 
 - GCC (with C++17 support)
 - OpenCV
 - CMake
 
-### Building
-
-------
+## Building
 
 To build this project, `cd` into the `build` directory and type:
 
@@ -36,9 +32,7 @@ cmake ..
 make
 ```
 
-### Usage
-
-------
+## Usage
 
 To apply watercolorization effect to an image:
 
@@ -54,8 +48,6 @@ To use the clustering tool, place the training images into `PicutreDatabase/Orig
 
 The pictures will be classified into 20 classes. Folders corresponding to each class will be created, with the symbolic links to the original files automatically generated in them. The trained centers of the k-means algorithm will be stored in  `model`, which should be put in the same directory of `Watercolorization` in order to enable the auto-detection of the closest style of images.
 
-### License
-
-------
+## License
 
 This project was licensed under GNU GPL3. Check the `LICENSE` file for more details.
